@@ -52,7 +52,7 @@
         </nav>
 
         <div class="auth-buttons d-flex align-items-center">
-          <a class="btn-getstarted" href="{{ route('login') }}">Sign In</a>
+          <a class="btn-getstarted" href="{{ route('register') }}">Daftar Akun</a>
         </div>
 
       </div>
@@ -389,7 +389,7 @@
               <div>
                 <h3>Kesehatan Lansia</h3>
                 <p>Kami menyediakan layanan bantuan kesehatan khusus lansia yang mencakup pemeriksaan rutin dan pendampingan medis.</p>
-                <a href="service-details.html" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
+                <a href="" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div><!-- End Service Card -->
@@ -402,7 +402,7 @@
               <div>
                 <h3>Pendamping Harian</h3>
                 <p>Layanan pendampingan sehari-hari untuk membantu lansia dengan aktivitas rumah tangga dan kebutuhan lainnya.</p>
-                <a href="service-details.html" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
+                <a href="" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div><!-- End Service Card -->
@@ -415,7 +415,7 @@
               <div>
                 <h3>Transportasi Aman</h3>
                 <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
-                <a href="service-details.html" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
+                <a href="" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div>
@@ -429,12 +429,12 @@
               <div>
                 <h3>Layanan Terpersonal</h3>
                 <p>Kami juga menawarkan layanan khusus sesuai dengan kebutuhan spesifik yang diinginkan oleh keluarga Anda.</p>
-                <a href="service-details.html" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
+                <a href="" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div>
           <div class="text-center mt-4">
-            <button class="btn btn-primary"><a class="cta-btn text-white" href="#">See More</a></button>
+            <button class="btn btn-primary"><a class="cta-btn text-white" href="{{ route('login') }}">See More</a></button>
           </div>
           
           <!-- End Service Card -->
