@@ -32,10 +32,10 @@ class AuthenticatedSessionController extends Controller
 
         // Arahkan berdasarkan peran pengguna
         if (Auth::user()->role == 'admin') {
-            return redirect()->route('admin.dashboard'); // Arahkan ke dashboard admin
+            return redirect()->route('dashboard'); // Arahkan ke dashboard admin
         }
 
-        return redirect()->route('user.dashboard'); // Arahkan ke dashboard user biasa
+        return redirect()->route('user.index'); // Arahkan ke dashboard user biasa
     }
 
     /**

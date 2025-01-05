@@ -11,48 +11,40 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Rute untuk Dashboard, hanya dapat diakses oleh pengguna yang sudah login dan terverifikasi
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Middleware untuk Penyedia (admin)
-Route::middleware(['auth'])->group(function () {
-    Route::prefix('admin')->name('admin.')->group(function () {
-        Route::middleware('can:admin-access')->group(function () {
-            Route::get('/dashboard', [PenyediaController::class, 'index'])->name('dashboard'); // Admin Dashboard
-            Route::post('/', [PenyediaController::class, 'store'])->name('store');
-            Route::put('/{id}', [PenyediaController::class, 'update'])->name('update');
-            Route::delete('/{id}', [PenyediaController::class, 'destroy'])->name('destroy');
-            
-            Route::get('/pengguna', [PenggunaController::class, 'index'])->name('pengguna.index');
-            Route::post('/pengguna', [PenggunaController::class, 'store'])->name('pengguna.store');
-            Route::put('/pengguna/{id}', [PenggunaController::class, 'update'])->name('pengguna.update');
-            Route::delete('/pengguna/{id}', [PenggunaController::class, 'destroy'])->name('pengguna.destroy');
-            
-            Route::get('/layanan', [LayananController::class, 'index'])->name('layanan.index');
-            Route::post('/layanan', [LayananController::class, 'store'])->name('layanan.store');
-            Route::put('/layanan/{id}', [LayananController::class, 'update'])->name('layanan.update');
-            Route::delete('/layanan/{id}', [LayananController::class, 'destroy'])->name('layanan.destroy');
-        });
-    });
-
-    // Middleware untuk Pengguna biasa
-    Route::prefix('user')->name('user.')->group(function () {
-        Route::middleware('can:user-access')->group(function () {
-            Route::get('/index', [UserController::class, 'index'])->name('index'); // User Dashboard
-            // Anda bisa menambahkan lebih banyak rute pengguna biasa di sini
-        });
-    });
-});
-
-// Rute Profile
 Route::middleware('auth')->group(function () {
-    Route::prefix('profile')->name('profile.')->group(function () {
-        Route::get('/', [ProfileController::class, 'edit'])->name('edit');
-        Route::patch('/', [ProfileController::class, 'update'])->name('update');
-        Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
-    });
+    // Routes for Profile
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Routes for Penyedia 
+    Route::resource('penyedia', PenyediaController::class);
+    Route::get('/penyedia', [PenyediaController::class, 'index'])->name('penyedia.index');
+    Route::post('/penyedia', [PenyediaController::class, 'store'])->name('penyedia.store');
+    Route::put('/penyedia/{id}', [PenyediaController::class, 'update'])->name('penyedia.update');
+    Route::delete('/penyedia/{id}', [PenyediaController::class, 'destroy'])->name('penyedia.destroy');
+
+    // Routes for Pengguna
+    Route::resource('pengguna', PenggunaController::class);
+    Route::get('/pengguna', [PenggunaController::class, 'index'])->name('pengguna.index');
+    Route::post('/pengguna', [PenggunaController::class, 'store'])->name('pengguna.store');
+    Route::put('/pengguna/{id}', [PenggunaController::class, 'update'])->name('pengguna.update');
+    Route::delete('/pengguna/{id}', [PenggunaController::class, 'destroy'])->name('pengguna.destroy');
+
+    // Routes for Layanan
+    Route::resource('layanan', LayananController::class);
+    Route::get('/layanan', [LayananController::class, 'index'])->name('layanan.index');
+    Route::post('/layanan', [LayananController::class, 'store'])->name('layanan.store');
+    Route::put('/layanan/{id}', [LayananController::class, 'update'])->name('layanan.update');
+    Route::delete('/layanan/{id}', [LayananController::class, 'destroy'])->name('layanan.destroy');
+
+    Route::resource('user', UserController::class);
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
+
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
